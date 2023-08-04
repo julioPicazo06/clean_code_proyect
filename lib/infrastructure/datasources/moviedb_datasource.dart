@@ -2,7 +2,7 @@ import 'package:clean_code_proyect/config/constants/environment.dart';
 import 'package:clean_code_proyect/domain/entities/movie.dart';
 import 'package:dio/dio.dart';
 
-import '../domain/dataSources/movies_dataSource.dart';
+import '../../domain/dataSources/movies_dataSource.dart';
 
 class MovieDBDataSourcetaSource extends MovieDataSource {
   final dio = Dio(
