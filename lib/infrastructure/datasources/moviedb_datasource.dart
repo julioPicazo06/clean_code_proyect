@@ -1,5 +1,7 @@
 import 'package:clean_code_proyect/config/constants/environment.dart';
 import 'package:clean_code_proyect/domain/entities/movie.dart';
+import 'package:clean_code_proyect/infrastructure/mappers/movie_mapper.dart';
+import 'package:clean_code_proyect/infrastructure/models/movieDB/moviedb_response.dart';
 import 'package:dio/dio.dart';
 
 import '../../domain/dataSources/movies_dataSource.dart';
@@ -21,7 +23,11 @@ class MovieDBDataSourcetaSource extends MovieDataSource {
       '/movie/now_playing',
     );
 
-    final List<Movie> movies = [];
+    final movieDBResponse = MovieDbResponse.fromJson(res.data);
+
+    final List<Movie> movies = movieDBResponse.results
+        .map((movie) => MovieMapper.movieDbToEntity(movie))
+        .toList();
 
     return movies;
   }
