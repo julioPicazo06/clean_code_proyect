@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 
 import '../../domain/dataSources/movies_dataSource.dart';
 
-class MovieDBDataSourcetaSource extends MovieDataSource {
+class MovieDBDataSource extends MovieDataSource {
   final dio = Dio(
       BaseOptions(baseUrl: 'https://api.themoviedb.org/3', queryParameters: {
     'api_key': Environments.theMovieKey,
@@ -26,6 +26,7 @@ class MovieDBDataSourcetaSource extends MovieDataSource {
     final movieDBResponse = MovieDbResponse.fromJson(res.data);
 
     final List<Movie> movies = movieDBResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no-poster')
         .map((movie) => MovieMapper.movieDbToEntity(movie))
         .toList();
 
