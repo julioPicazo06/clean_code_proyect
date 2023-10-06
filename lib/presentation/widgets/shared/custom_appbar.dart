@@ -9,6 +9,7 @@ class CustomAppbar extends StatelessWidget {
 
     final titlleStyle = Theme.of(context).textTheme.titleMedium;
     return SafeArea(
+      bottom: false,
       child: Container(
         height: 50,
         color: Colors.white30,
